@@ -1,12 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe CookBook do
-  
-  describe "Retrieving the latest tweets" do
-    before do
-      CookBook.stub(:create_recipes)
-    end
-    
+  before do
+    Recipe.stub(:new)
+  end
+
+  describe "Retrieving the latest tweets" do  
     it "should retrieve the latest tweets from upon instantiation" do
       tweets = [1,2,3]
       Twitter.should_receive(:user_timeline).and_return(tweets)
