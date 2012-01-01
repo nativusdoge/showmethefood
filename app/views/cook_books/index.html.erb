@@ -1,0 +1,4 @@
+<% @cookBook.recipes.each do |recipe| %>
+  <h1><%= recipe.description %></h1>
+  <h2><%= link_to(recipe.link_url) %>
+<% end %>

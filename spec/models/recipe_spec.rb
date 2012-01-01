@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 shared_examples_for "parser" do
   it "should split into a description and url" do
     tweet = mock{tweet}
-    tweet.stub(:description).and_return('Yummy food http://yummyfood.com')
+    tweet.stub(:text).and_return('Yummy food http://yummyfood.com')
     r = Recipe.new
     r.parse(tweet)
     r.description.should == 'Yummy food'

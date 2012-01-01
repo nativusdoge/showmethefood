@@ -1,6 +1,6 @@
 module Parser
   def parse(tweet)
-    @description = tweet.description.split('http').first.strip
-    @link_url = URI.extract(tweet.description).first
+    @description = tweet.text.split('http').first.strip
+    @link_url = URI.extract(tweet.text).first
   end
 end

@@ -46,9 +46,11 @@ Showmethefood::Application.routes.draw do
   #     resources :products
   #   end
 
+  resources :cookBooks
+  
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'cookBooks#index'
 
   # See how all your routes lay out with "rake routes"
 

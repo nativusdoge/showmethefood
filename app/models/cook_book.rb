@@ -11,7 +11,9 @@ class CookBook
   
   def create_recipes(tweets)
     tweets.each do |tweet|
-      @recipes << Recipe.new(tweet)
+      recipe = Recipe.new
+      recipe.parse(tweet)
+      @recipes << recipe 
     end
   end
 end
