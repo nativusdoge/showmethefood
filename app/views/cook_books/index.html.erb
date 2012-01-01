@@ -1,4 +1,10 @@
-<% @cookBook.recipes.each do |recipe| %>
-  <h1><%= recipe.description %></h1>
-  <h2><%= link_to(recipe.link_url) %>
-<% end %>
+<ul class="media-grid">
+  <% @cookBook.recipes.each do |recipe| %>
+  <li>
+    <%= link_to recipe.link_url do %>
+      <img class="thumbnail" src="http://placehold.it/290x207" alt=<%= "\"#{recipe.description}\"" %>>
+      <h5><%= recipe.description %></h5>
+    <% end %>
+  </li>
+  <% end %>
+</ul>

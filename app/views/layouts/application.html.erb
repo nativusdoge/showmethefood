@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Showmethefood</title>
+  <title>Show Me The Food</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
+<body style="padding-top: 60px">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="container">
+        <h3><%= link_to "Show Me The Food", "/" %></h3>
+        <ul class="nav">
+          <li><%= link_to "Link1", "/path1"  %></li>
+          <li><%= link_to "Link2", "/path2"  %></li>
+          <li><%= link_to "Link3", "/path3"  %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>
