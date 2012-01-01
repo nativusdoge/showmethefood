@@ -1,16 +1,24 @@
 class CookBook
-  attr_accessor :recipes
+  attr_accessor :recipes, :tweets, :account
   
   def initialize
+    @account = 'cookpadit'
     @recipes = []
-    tweets = Twitter.user_timeline("cookpadit", {:count => 9})
-    create_recipes(tweets)
+  end
+  
+  def populate
+    retrieve_tweets
+    create_recipes
   end
   
   private
   
-  def create_recipes(tweets)
-    tweets.each do |tweet|
+  def retrieve_tweets
+    @tweets = Twitter.user_timeline(@account, {:count => 9})
+  end
+  
+  def create_recipes
+    @tweets.each do |tweet|
       recipe = Recipe.new
       recipe.parse(tweet)
       @recipes << recipe 
