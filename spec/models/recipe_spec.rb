@@ -1,11 +1,16 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe Recipe do
-  describe "Parsing the tweet" do
-    it "should parse the tweet upon instantiation" do
-      tweet = mock{tweet}
-      Recipe.should_receive(:parse)
-      Recipe.new(tweet)
-    end
+shared_examples_for "parser" do
+  it "should split into a description and url" do
+    tweet = mock{tweet}
+    tweet.stub(:description).and_return('Yummy food http://yummyfood.com')
+    r = Recipe.new
+    r.parse(tweet)
+    r.description.should == 'Yummy food'
+    r.link_url.should == 'http://yummyfood.com'
   end
+end
+
+describe Recipe do
+  it_should_behave_like "parser"
 end
