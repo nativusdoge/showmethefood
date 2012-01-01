@@ -8,10 +8,10 @@ module Parser
   end
   
   def get_image_url
-    document = open(@link_url) { |f| Hpricot(f) }
+    document = Nokogiri::HTML(open(@link_url))
     if document
-      element = document.at("//div[@class='main_image']//a[@href]")
-      element[:href]
+      element = document.xpath("//div[@class='main_image']//a[@href]")
+      element.attribute('href').value
     else
       'http://dummyimage.com/290x299&text=Sorry%20no%20picture!'
     end

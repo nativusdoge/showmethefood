@@ -22,7 +22,7 @@ describe CookBook do
     
     it "should only retrieve the last 9 tweets from twitter account" do
       @cookbook.account = 'twitter'
-      Twitter.should_receive(:user_timeline).with('twitter', {:count => 9}).and_return(@tweets)
+      Twitter.should_receive(:user_timeline).with('twitter', {:count => 6}).and_return(@tweets)
       subject
     end
   end

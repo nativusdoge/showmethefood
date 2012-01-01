@@ -14,7 +14,7 @@ class CookBook
   private
   
   def retrieve_tweets
-    @tweets = Twitter.user_timeline(@account, {:count => 9})
+    @tweets = Twitter.user_timeline(@account, {:count => 6})
   end
   
   def create_recipes
