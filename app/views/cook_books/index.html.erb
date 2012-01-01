@@ -2,7 +2,7 @@
   <% @cookBook.recipes.each do |recipe| %>
   <li>
     <%= link_to recipe.link_url do %>
-      <img class="thumbnail" src="http://placehold.it/290x207" alt=<%= "\"#{recipe.description}\"" %>>
+      <img class="thumbnail" src=<%= "#{recipe.image_url}" %> alt=<%= "\"#{recipe.description}\"" %> width="290" height="207" >
       <h5><%= recipe.description %></h5>
     <% end %>
   </li>
