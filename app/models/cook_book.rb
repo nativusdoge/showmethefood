@@ -11,10 +11,16 @@ class CookBook
     create_recipes
   end
   
+  def randomize
+    retrieve_tweets(100)
+    @tweets = @tweets.sample(6)
+    create_recipes
+  end
+  
   private
   
-  def retrieve_tweets
-    @tweets = Twitter.user_timeline(@account, {:count => 6})
+  def retrieve_tweets(count = 6)
+    @tweets = Twitter.user_timeline(@account, {:count => count})
   end
   
   def create_recipes

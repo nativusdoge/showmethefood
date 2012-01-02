@@ -13,7 +13,7 @@
         <h3><%= link_to "Show Me The Food", "/" %></h3>
         <ul class="nav">
           <li><%= link_to "Latest", root_path  %></li>
-          <li><%= link_to "Random", "/path2"  %></li>
+          <li><%= link_to "Random", root_path(:random => true) %></li>
         </ul>
       </div>
     </div>

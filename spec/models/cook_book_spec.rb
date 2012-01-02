@@ -6,6 +6,7 @@ describe CookBook do
     @tweet.stub(:text).and_return('Yummy food http://yummyfood.com')
     @tweets = [@tweet, @tweet, @tweet]
     @cookbook = CookBook.new
+    @cookbook.account = 'twitter'
   end
 
   describe "Retrieving the latest tweets" do
@@ -21,9 +22,29 @@ describe CookBook do
     end
     
     it "should only retrieve the last 9 tweets from twitter account" do
-      @cookbook.account = 'twitter'
       Twitter.should_receive(:user_timeline).with('twitter', {:count => 6}).and_return(@tweets)
       subject
+    end
+  end
+  
+  describe "Retrieving random tweets" do
+    subject { @cookbook.randomize }
+    
+    before do
+      @cookbook.stub(:create_recipes)
+    end
+    
+    it "should retrieve the last 200 tweets from twitter account" do
+      @cookbook.account = 'twitter'
+      Twitter.should_receive(:user_timeline).with('twitter', {:count => 100}).and_return(@tweets)
+      subject
+    end
+    
+    it "should create a random array of 6 tweets" do
+      @tweets = [@tweet, @tweet, @tweet, @tweet, @tweet, @tweet, @tweet, @tweet, @tweet]
+      Twitter.stub(:user_timeline).with('twitter', {:count => 100}).and_return(@tweets)
+      subject
+      @cookbook.tweets.size.should == 6
     end
   end
   
