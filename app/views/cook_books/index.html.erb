@@ -3,7 +3,7 @@
   <li>
     <%= link_to recipe.link_url, :target => "_blank" do %>
       <img class="thumbnail" src=<%= "#{recipe.image_url}" %> alt=<%= "\"#{recipe.description}\"" %> width="290" height="299" >
-      <h5><%= recipe.description %></h5>
+      <h5><%= shorten_description(recipe.description) %></h5>
     <% end %>
   </li>
   <% end %>
