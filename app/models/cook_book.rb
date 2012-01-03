@@ -2,7 +2,7 @@ class CookBook
   attr_accessor :recipes, :tweets, :account
   
   def initialize
-    @account = ''
+    @account = 'cookpadit'
     @recipes = []
   end
   
