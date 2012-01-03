@@ -3,7 +3,7 @@ require 'open-uri'
 module Parser
   def parse(tweet)
     @description = tweet.text.split('http').first.strip
-    @link_url = URI.extract(tweet.text).first
+    @link_url = URI.extract(tweet.text, 'http').first
     @image_url = get_image_url if @link_url
   end
   

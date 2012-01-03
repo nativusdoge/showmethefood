@@ -16,6 +16,12 @@ shared_examples_for "parser" do
       @recipe.description.should == 'Yummy food'
       @recipe.link_url.should == 'http://yummyfood.com'
     end
+    
+    it "should only look for http in the url" do
+      @tweet.stub(:text).and_return('Yummy food mailto:hello@food.com http://yummyfood.com')
+      subject
+      @recipe.link_url.should == 'http://yummyfood.com'
+    end
   end
   
   describe "determining the image url" do
