@@ -36,16 +36,16 @@ shared_examples_for "parser" do
       Nokogiri::HTML::Document.should_receive(:parse)
       subject
     end
-    
-    it "should return a placeholder if there is no image" do
-      Nokogiri::HTML::Document.stub(:parse).and_return(nil)
-      subject.should == 'http://dummyimage.com/290x299&text=Sorry%20no%20picture!'
-    end
   
     it "should parse out the image url from the html" do
       document = Nokogiri::HTML("<div class=\"main_image\"> <a href=\"http://placehold.it/290x299\" class=\"colorbox\"><img alt=\"Yummy food\" src=\"http://placehold.it/290x207\" /></a> </div>")
       Nokogiri::HTML::Document.stub(:parse).and_return(document)
       subject.should == "http://placehold.it/290x299"
+    end
+    
+    it "should return a placeholder if there are any errors in retrieving the image" do
+      Nokogiri::HTML::Document.should_receive(:parse).and_raise(Exception)
+      subject.should == 'http://dummyimage.com/290x299&text=Sorry%20no%20picture!'
     end
   end
 end

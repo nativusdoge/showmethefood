@@ -9,11 +9,9 @@ module Parser
   
   def get_image_url
     document = Nokogiri::HTML(open(@link_url))
-    if document
-      element = document.xpath("//div[@class='main_image']//a[@href]")
-      element.attribute('href').value
-    else
-      'http://dummyimage.com/290x299&text=Sorry%20no%20picture!'
-    end
+    element = document.xpath("//div[@class='main_image']//a[@href]")
+    element.attribute('href').value
+  rescue Exception
+    'http://dummyimage.com/290x299&text=Sorry%20no%20picture!'
   end
 end
